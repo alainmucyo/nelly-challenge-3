@@ -8,7 +8,7 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
-app.get("/gallery/:galleryId", (async (req, res) => {
+app.get("/api/gallery/:galleryId", (async (req, res) => {
     const {galleryId} = req.params
     const {data} = await axios.get(`https://jsonplaceholder.typicode.com/albums/${galleryId}/photos`)
     res.send(data)

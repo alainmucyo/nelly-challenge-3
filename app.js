@@ -11,7 +11,10 @@ app.use(express.json())
 app.get("/api/gallery/:galleryId", (async (req, res) => {
     const {galleryId} = req.params
     const {data} = await axios.get(`https://jsonplaceholder.typicode.com/albums/${galleryId}/photos`)
-    res.send(data)
+    const formattedData=data.map(d=>{
+        return {title:d.title,thumbnailUrl:d.thumbnailUrl}
+    })
+    res.send(formattedData)
 }))
 
 app.listen(process.env.PORT || 5000, () => {
